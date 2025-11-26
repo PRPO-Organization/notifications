@@ -1,0 +1,7 @@
+curl -v -X POST http://localhost:8081/notifications/send \
+  -H "Content-Type: application/json" \
+  -d '{
+        "recipient": "user@example.com",
+        "subject": "Test Notification",
+        "body": "This is a test notification from the service."
+      }'

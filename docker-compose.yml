@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  notification-db:
+    image: postgres:15
+    container_name: notification-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: notificationdb
+    volumes:
+      - notification-data:/var/lib/postgresql/data
+      - ./notification-db/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5434:5432"
+
+  notification-service:
+    build: .
+    container_name: notification-service
+    depends_on:
+      - notification-db
+    environment:
+      DB_URL: jdbc:postgresql://notification-db:5432/notificationdb
+      DB_USER: admin
+      DB_PASSWORD: pass
+      SMTP_HOST: smtp.gmail.com
+      SMTP_PORT: "587"
+      SMTP_USER: stefan.jakjoski@gmail.com
+      SMTP_PASS: dupm xlpk kzks dbhk
+      SMTP_FROM: stefan.jakjoski@gmail.com
+    ports:
+      - "8081:8081"
+
+volumes:
+  notification-data:

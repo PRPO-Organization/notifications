@@ -1,0 +1,9 @@
+/home/stefan/Faks/PRPO/prponotifications/notification-service/src/main/java/com/skupina1/notificationservice/service/NotificationService.java
+/home/stefan/Faks/PRPO/prponotifications/notification-service/src/main/java/com/skupina1/notificationservice/repository/NotificationRepository.java
+/home/stefan/Faks/PRPO/prponotifications/notification-service/src/main/java/com/skupina1/notificationservice/service/EmailService.java
+/home/stefan/Faks/PRPO/prponotifications/notification-service/src/main/java/com/skupina1/notificationservice/model/Notification.java
+/home/stefan/Faks/PRPO/prponotifications/notification-service/src/main/java/com/skupina1/notificationservice/config/Config.java
+/home/stefan/Faks/PRPO/prponotifications/notification-service/src/main/java/com/skupina1/notificationservice/provider/ObjectMapperProvider.java
+/home/stefan/Faks/PRPO/prponotifications/notification-service/src/main/java/com/skupina1/notificationservice/db/Database.java
+/home/stefan/Faks/PRPO/prponotifications/notification-service/src/main/java/com/skupina1/notificationservice/App.java
+/home/stefan/Faks/PRPO/prponotifications/notification-service/src/main/java/com/skupina1/notificationservice/resource/NotificationResource.java
