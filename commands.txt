@@ -1,7 +1,8 @@
 curl -v -X POST http://localhost:8081/notifications/send \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2NDI0ODY1MywiZXhwIjoxNzY0MzM1MDUzfQ.tGryOrLCYzXyU5R9yDwZXBed_wKif5JTfQx-mDwQzpjH9ZQ2f0oBnlVJyGDqhU1R" \
   -d '{
-        "recipient": "user@example.com",
+        "recipient": "stefan.jakjoski@gmail.com",
         "subject": "Test Notification",
         "body": "This is a test notification from the service."
       }'

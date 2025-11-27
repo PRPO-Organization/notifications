@@ -21,6 +21,7 @@ services:
       - notification-db
     environment:
       DB_URL: jdbc:postgresql://notification-db:5432/notificationdb
+      JWT_SECRET_TOKEN: 53V3NPR41535T0L0RDJUR1CL0NGM4YHER31GNF0RH15RUL3W45PR0M153D
       DB_USER: admin
       DB_PASSWORD: pass
       SMTP_HOST: smtp.gmail.com

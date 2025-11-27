@@ -5,6 +5,8 @@ com/skupina1/notificationservice/db/Database.class
 com/skupina1/notificationservice/repository/NotificationRepository.class
 com/skupina1/notificationservice/service/NotificationService.class
 com/skupina1/notificationservice/service/EmailService$1.class
+com/skupina1/notificationservice/security/JwtAuthFilter.class
 com/skupina1/notificationservice/provider/ObjectMapperProvider.class
+com/skupina1/notificationservice/security/JwtUtils.class
 com/skupina1/notificationservice/App.class
 com/skupina1/notificationservice/config/Config.class

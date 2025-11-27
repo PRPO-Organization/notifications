@@ -2,6 +2,7 @@ package com.skupina1.notificationservice;
 
 import com.skupina1.notificationservice.provider.ObjectMapperProvider;
 import com.skupina1.notificationservice.repository.NotificationRepository;
+import com.skupina1.notificationservice.security.JwtAuthFilter;
 import com.skupina1.notificationservice.service.EmailService;
 import com.skupina1.notificationservice.service.NotificationService;
 import jakarta.activation.spi.MailcapRegistryProvider;
@@ -22,7 +23,8 @@ public class App {
 
         ResourceConfig rc = new ResourceConfig().packages("com.skupina1.notificationservice.resource")
                 .register(JacksonFeature.class)
-                .register(ObjectMapperProvider.class);
+                .register(ObjectMapperProvider.class)
+                .register(JwtAuthFilter.class);
 
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
 
