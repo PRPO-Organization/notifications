@@ -60,4 +60,8 @@ public class NotificationService {
     public ArrayList<Notification> getNotificationsToEmail(String email){
         return repository.getNotificationsToEmail(email);
     }
+
+    public int deleteOlderThan(int days){
+        return repository.deleteOlderThan(days);
+    }
 }

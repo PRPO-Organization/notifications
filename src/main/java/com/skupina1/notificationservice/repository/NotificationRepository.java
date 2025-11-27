@@ -83,4 +83,19 @@ public class NotificationRepository {
             return notifications;
         }
     }
+
+    public int deleteOlderThan(int days){
+        String sql = """
+                DELETE FROM notifications WHERE created_at < NOW() - INTERVAL '%d days'
+                """.formatted(days);
+
+        try (Connection con = Database.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            return ps.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

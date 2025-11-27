@@ -6,3 +6,13 @@ curl -v -X POST http://localhost:8081/notifications/send \
         "subject": "Test Notification",
         "body": "This is a test notification from the service."
       }'
+
+curl -X GET http://localhost:8081/notifications \
+ -H "Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2NDI0ODY1MywiZXhwIjoxNzY0MzM1MDUzfQ.tGryOrLCYzXyU5R9yDwZXBed_wKif5JTfQx-mDwQzpjH9ZQ2f0oBnlVJyGDqhU1R" \
+
+
+curl -X GET http://localhost:8081/notifications/stefan.jakjoski@gmail.com \
+ -H "Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2NDI0ODY1MywiZXhwIjoxNzY0MzM1MDUzfQ.tGryOrLCYzXyU5R9yDwZXBed_wKif5JTfQx-mDwQzpjH9ZQ2f0oBnlVJyGDqhU1R" \
+
+curl -X DELETE http://localhost:8081/notifications/1 \
+ -H "Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2NDI0ODY1MywiZXhwIjoxNzY0MzM1MDUzfQ.tGryOrLCYzXyU5R9yDwZXBed_wKif5JTfQx-mDwQzpjH9ZQ2f0oBnlVJyGDqhU1R" \

@@ -66,4 +66,18 @@ public class NotificationResource {
 
         return Response.ok(notifications).build();
     }
+
+    @DELETE
+    @Path("/{days}")
+    public Response deleteOlderThan(@PathParam("days") int days){
+        int deletedCount = service.deleteOlderThan(days);
+
+        if(deletedCount == 0){
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("{\"message\":\"No notifications older than specified time\"}")
+                    .build();
+        }
+
+        return Response.ok("{\"deleted\":\"" + deletedCount + "\"}").build();
+    }
 }
