@@ -29,6 +29,19 @@ public class NotificationResource {
         return Response.ok("{\"message\":\"Notification logged\"}").build();
     }
 
+    @POST
+    @Path("/send-html")
+    public Response sendHtml(Notification notification) {
+        boolean sent = service.sendNotificationAsHtml(notification.getRecipient(), notification.getSubject(), notification.getBody());
+
+        if(!sent)
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("{\"error\":\"Notification logging failed\"}")
+                    .build();
+
+        return Response.ok("{\"message\":\"Notification logged\"}").build();
+    }
+
     @GET
     public Response getAllNotifications(){
         ArrayList<Notification> notifications = service.getNotifications();

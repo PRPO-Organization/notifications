@@ -55,4 +55,21 @@ public class EmailService {
             return false;
         }
     }
+
+    public boolean sendEmailAsHtml(String to, String subject, String body){
+        try {
+            Message msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress(from));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            msg.setSubject(subject);
+            msg.setContent(body, "text/html; charset=utf-8");
+
+            Transport.send(msg);
+            return true;
+        } catch (MessagingException e) {
+            System.out.println("Messaging error: " + e);
+            return false;
+        }
+
+    }
 }
