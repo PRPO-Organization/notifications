@@ -8,7 +8,7 @@ public class Notification {
     private String subject;
     private String body;
     private LocalDateTime createdAt;
-    private boolean read;
+    private boolean isRead;
 
     public Notification() {}
 
@@ -17,7 +17,7 @@ public class Notification {
         this.subject = subject;
         this.body = body;
         this.createdAt = LocalDateTime.now();
-        this.read = false;
+        this.isRead = false;
     }
 
     public int getId() {return this.id;}
@@ -25,12 +25,12 @@ public class Notification {
     public String getBody() {return this.body;}
     public String getSubject() {return this.subject;}
     public LocalDateTime getCreatedAt() {return this.createdAt;}
-    public boolean isRead() {return this.read;}
+    public boolean isRead() {return this.isRead;}
 
     public void setRecipient(String recipient) {this.recipient = recipient;}
     public void setSubject(String subject) {this.subject = subject;}
     public void setBody(String body) {this.body = body;}
     public void setId(int id) {this.id = id;}
     public void setCreatedAt(LocalDateTime createdAt) {this.createdAt = createdAt;}
-    public void setRead(boolean read) {this.read = read;}
+    public void setRead(boolean read) {this.isRead = read;}
 }

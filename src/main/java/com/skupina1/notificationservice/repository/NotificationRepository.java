@@ -74,6 +74,7 @@ public class NotificationRepository {
                 Notification n = new Notification(to, subject, body);
                 n.setCreatedAt(rs.getObject("created_at", LocalDateTime.class));
                 n.setId(rs.getInt("id"));
+                n.setRead(rs.getBoolean("is_read"));
                 notifications.add(n);
             }
 
@@ -85,7 +86,7 @@ public class NotificationRepository {
     }
 
     public ArrayList<Notification> getUnreadNotificationsToEmail(String email){
-        String sql = "SELECT * FROM notifications WHERE recipient = ? AND read = false";
+        String sql = "SELECT * FROM notifications WHERE recipient = ? AND is_read = false";
         ArrayList<Notification> notifications = new ArrayList<>();
 
         try (Connection con = Database.getConnection();
@@ -102,7 +103,7 @@ public class NotificationRepository {
                 Notification n = new Notification(to, subject, body);
                 n.setCreatedAt(rs.getObject("created_at", LocalDateTime.class));
                 n.setId(rs.getInt("id"));
-                n.setRead(rs.getBoolean("read")); // set the read status
+                n.setRead(rs.getBoolean("is_read")); // set the read status
                 notifications.add(n);
             }
 
@@ -114,7 +115,7 @@ public class NotificationRepository {
     }
 
     public int markNotificationsAsRead(String email) {
-        String sql = "UPDATE notifications SET read = true WHERE recipient = ? AND read = false";
+        String sql = "UPDATE notifications SET is_read = true WHERE recipient = ? AND is_read = false";
 
         try (Connection con = Database.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {

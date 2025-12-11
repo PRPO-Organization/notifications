@@ -120,8 +120,7 @@ public class NotificationResource {
         ArrayList<Notification> notifications = service.getNotificationsToEmail(email);
 
         if (notifications.isEmpty()) {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("{\"message\":\"No notifications found\"}")
+            return Response.ok("{\"message\":\"No notifications found\"}")
                     .build();
         }
 
@@ -150,8 +149,8 @@ public class NotificationResource {
         ArrayList<Notification> notifications = service.getUnreadNotificationsToEmail(email);
 
         if (notifications.isEmpty()) {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("{\"message\":\"No notifications found\"}")
+            return Response
+                    .ok("{\"message\":\"No notifications found\"}")
                     .build();
         }
 

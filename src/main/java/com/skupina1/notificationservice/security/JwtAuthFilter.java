@@ -62,9 +62,9 @@ public class JwtAuthFilter implements ContainerRequestFilter {
 
         RolesAllowed rolesAllowed = getRolesAllowed();
         if (rolesAllowed != null) {
-            System.out.println(rolesAllowed);
+            //System.out.println(rolesAllowed);
             if (!isRoleAllowed(role, rolesAllowed.value())) {
-                System.out.println("CHECK getRolesAllowed");
+                //System.out.println("CHECK getRolesAllowed");
                 abort(requestContext, Response.Status.FORBIDDEN, "Insufficient permissions");
                 return;
             }
