@@ -12,7 +12,7 @@ services:
       - notification-data:/var/lib/postgresql/data
       - ./notification-db/init:/docker-entrypoint-initdb.d
     ports:
-      - "5434:5432"
+      - "5435:5432"
 
   notification-service:
     build: .

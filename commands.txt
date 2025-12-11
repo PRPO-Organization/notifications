@@ -1,14 +1,14 @@
 curl -v -X POST http://localhost:8081/notifications/send \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2NDI0ODY1MywiZXhwIjoxNzY0MzM1MDUzfQ.tGryOrLCYzXyU5R9yDwZXBed_wKif5JTfQx-mDwQzpjH9ZQ2f0oBnlVJyGDqhU1R" \
-  -d '{
+  -H "Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2NTQwMzY5OSwiZXhwIjoxNzY1NDkwMDk5fQ.9Kn4TuJdZmA-exIj7TuyjZfNG2hUesE8VFR525p4OO165TFlKEyZWsbST2ibPwAQ" \
+    -d '{
         "recipient": "stefan.jakjoski@gmail.com",
         "subject": "Test Notification",
         "body": "This is a test notification from the service."
       }'
 
 curl -X GET http://localhost:8081/notifications \
- -H "Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2NDI0ODY1MywiZXhwIjoxNzY0MzM1MDUzfQ.tGryOrLCYzXyU5R9yDwZXBed_wKif5JTfQx-mDwQzpjH9ZQ2f0oBnlVJyGDqhU1R" \
+ -H "Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2NTQwMzY5OSwiZXhwIjoxNzY1NDkwMDk5fQ.9Kn4TuJdZmA-exIj7TuyjZfNG2hUesE8VFR525p4OO165TFlKEyZWsbST2ibPwAQ" \
 
 
 curl -X GET http://localhost:8081/notifications/stefan.jakjoski@gmail.com \
