@@ -2,6 +2,7 @@ package com.skupina1.notificationservice.resource;
 
 import com.skupina1.notificationservice.model.Notification;
 import com.skupina1.notificationservice.security.JwtUtils;
+import com.skupina1.notificationservice.service.BroadcastingService;
 import com.skupina1.notificationservice.service.NotificationService;
 import com.skupina1.notificationservice.sse.UserSseRegistry;
 import io.jsonwebtoken.Claims;
@@ -25,7 +26,15 @@ import java.util.concurrent.TimeUnit;
 @Consumes(MediaType.APPLICATION_JSON)
 public class NotificationResource {
 
+    @Context
+    private Sse sse;
+
     private final NotificationService service = new NotificationService();
+    private final BroadcastingService broadcastingService;
+
+    public NotificationResource(@Context Sse sse){
+        this.broadcastingService = new BroadcastingService(sse);
+    }
 
 
 
@@ -35,6 +44,7 @@ public class NotificationResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response send(Notification notification) {
         boolean sent = service.sendNotification(notification.getRecipient(), notification.getSubject(), notification.getBody());
+        broadcastingService.sendToUser(notification);
 
         if(!sent)
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
@@ -161,19 +171,16 @@ public class NotificationResource {
         String email = JwtUtils.validateToken(token).getSubject();
         if (email == null) {
             eventSink.close();
+            System.out.println("Invalid token: Email not found");
+            return;
         }
 
-        UserSseRegistry.addSink(email, eventSink);
+        UserSseRegistry.add(email, eventSink);
 
-        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-        executor.scheduleAtFixedRate(() -> {
-            if (!eventSink.isClosed()) {
-                eventSink.send(sse.newEventBuilder().comment("keep-alive").build());
-            } else {
-                executor.shutdown();
-                UserSseRegistry.removeSink(email, eventSink);
-            }
-        }, 0, 30, TimeUnit.SECONDS);
+        //eventSink.onClose(() -> UserSseRegistry.remove(email));
+
+        // Send initial hello so EventSource opens immediately
+        eventSink.send(sse.newEvent("init", "connected"));
     }
 
     @PUT

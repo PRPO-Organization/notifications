@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS notifications (
+CREATE TABLE IF NOT EXISTS notificationdb (
     id SERIAL PRIMARY KEY,
     recipient VARCHAR(255) NOT NULL,
     subject VARCHAR(255) NOT NULL,

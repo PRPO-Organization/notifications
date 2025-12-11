@@ -9,23 +9,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class UserSseRegistry {
 
     // Map email -> list of SSE connections
-    private static final ConcurrentHashMap<String, CopyOnWriteArrayList<SseEventSink>> userSinks = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, SseEventSink> sinks = new ConcurrentHashMap<>();
 
-    public static void addSink(String email, SseEventSink sink) {
-        userSinks.computeIfAbsent(email, k -> new CopyOnWriteArrayList<>()).add(sink);
+    public static void add(String email, SseEventSink sink) {
+        sinks.put(email, sink);
     }
 
-    public static void removeSink(String email, SseEventSink sink) {
-        List<SseEventSink> sinks = userSinks.get(email);
-        if (sinks != null) {
-            sinks.remove(sink);
-            if (sinks.isEmpty()) {
-                userSinks.remove(email);
-            }
-        }
+    public static void remove(String email) {
+        sinks.remove(email);
     }
 
-    public static List<SseEventSink> getSinks(String email) {
-        return userSinks.getOrDefault(email, new CopyOnWriteArrayList<>());
+    public static SseEventSink get(String email) {
+        return sinks.get(email);
     }
 }

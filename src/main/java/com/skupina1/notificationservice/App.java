@@ -29,7 +29,6 @@ public class App {
                 .register(ObjectMapperProvider.class)
                 .register(JwtAuthFilter.class)
                 .register(CorsFilter.class)
-                //.register(RolesAllowedDynamicFeature.class)
                 .register(SseFeature.class);
 
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);

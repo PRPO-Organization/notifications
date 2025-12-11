@@ -15,21 +15,15 @@ import java.util.List;
 
 public class NotificationService {
 
-    @Context
-    private Sse sse;
-
     private final EmailService emailService = new EmailService();
     private final NotificationRepository repository = new NotificationRepository();
-    private BroadcastingService broadcastingService;
+    //private BroadcastingService broadcastingService;
 
     public boolean sendNotification(String recipient, String subject, String body) {
-        if (broadcastingService == null) {
-            broadcastingService = new BroadcastingService(sse);
-        }
 
         Notification notification = new Notification(recipient, subject, body);
         boolean logged = repository.logNotification(notification);
-        broadcastingService.sendToUser(notification);
+        //broadcastingService.sendToUser(notification);
 
         if(logged)
             System.out.println("Notification logged for: " + recipient);
