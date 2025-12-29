@@ -74,6 +74,7 @@ public class NotificationRepository {
                 Notification n = new Notification(to, subject, body);
                 n.setCreatedAt(rs.getObject("created_at", LocalDateTime.class));
                 n.setId(rs.getInt("id"));
+                n.setRead(rs.getBoolean("is_read"));
                 notifications.add(n);
             }
 
@@ -81,6 +82,52 @@ public class NotificationRepository {
         } catch (SQLException e) {
             e.printStackTrace();
             return notifications;
+        }
+    }
+
+    public ArrayList<Notification> getUnreadNotificationsToEmail(String email){
+        String sql = "SELECT * FROM notifications WHERE recipient = ? AND is_read = false";
+        ArrayList<Notification> notifications = new ArrayList<>();
+
+        try (Connection con = Database.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                String to = rs.getString("recipient");
+                String subject = rs.getString("subject");
+                String body = rs.getString("body");
+
+                Notification n = new Notification(to, subject, body);
+                n.setCreatedAt(rs.getObject("created_at", LocalDateTime.class));
+                n.setId(rs.getInt("id"));
+                n.setRead(rs.getBoolean("is_read")); // set the read status
+                notifications.add(n);
+            }
+
+            return notifications;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return notifications;
+        }
+    }
+
+    public int markNotificationsAsRead(String email) {
+        String sql = "UPDATE notifications SET is_read = true WHERE recipient = ? AND is_read = false";
+
+        try (Connection con = Database.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, email);
+            int rowsUpdated = ps.executeUpdate();
+
+            return rowsUpdated;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
         }
     }
 
