@@ -11,7 +11,6 @@
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jersey.version>3.1.5</jersey.version>
         <kafka.version>3.7.0</kafka.version>

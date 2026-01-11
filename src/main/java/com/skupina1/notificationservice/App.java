@@ -1,25 +1,21 @@
 package com.skupina1.notificationservice;
 
-import com.skupina1.notificationservice.provider.ObjectMapperProvider;
-import com.skupina1.notificationservice.repository.NotificationRepository;
-import com.skupina1.notificationservice.security.CorsFilter;
-import com.skupina1.notificationservice.security.JwtAuthFilter;
-import com.skupina1.notificationservice.service.EmailService;
-import com.skupina1.notificationservice.service.NotificationService;
-import jakarta.activation.spi.MailcapRegistryProvider;
+import java.net.URI;
+
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.media.sse.SseFeature;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URI;
+import com.skupina1.notificationservice.provider.ObjectMapperProvider;
+import com.skupina1.notificationservice.security.CorsFilter;
+import com.skupina1.notificationservice.security.JwtAuthFilter;
 
 public class App {
-    public static final String BASE_URI = "http://0.0.0.0:8081/";
+    public static final String BASE_URI = "http://0.0.0.0:8080/";
     private static final Logger log = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args) {
