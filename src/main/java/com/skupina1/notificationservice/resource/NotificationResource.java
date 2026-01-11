@@ -100,7 +100,7 @@ public class NotificationResource {
 
     @GET
     @Path("/me")
-    @RolesAllowed({"CUSTOMER, DRIVER"})
+    @RolesAllowed({"CUSTOMER", "DRIVER"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOwnNotifications(@Context ContainerRequestContext ctx){
         Claims claims = (Claims) ctx.getProperty("claims");
@@ -129,7 +129,7 @@ public class NotificationResource {
 
     @GET
     @Path("/me/unread")
-    @RolesAllowed({"CUSTOMER, DRIVER"})
+    @RolesAllowed({"CUSTOMER", "DRIVER"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOwnUnreadNotifications(@Context ContainerRequestContext ctx){
         Claims claims = (Claims) ctx.getProperty("claims");
@@ -184,7 +184,7 @@ public class NotificationResource {
 
     @PUT
     @Path("/me")
-    @RolesAllowed({"CUSTOMER, DRIVER, ADMIN"})
+    @RolesAllowed({"CUSTOMER", "DRIVER", "ADMIN"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response markNotificationsAsRead(@Context ContainerRequestContext ctx){
         Claims claims = (Claims) ctx.getProperty("claims");

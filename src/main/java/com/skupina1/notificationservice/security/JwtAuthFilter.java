@@ -85,6 +85,9 @@ public class JwtAuthFilter implements ContainerRequestFilter {
     private boolean isRoleAllowed(String userRole, String[] allowedRoles) {
         if ("ADMIN".equals(userRole)) return true;
 
+        //System.out.println("Roles required: " + allowedRoles.toString());
+        //System.out.println("User role: " + userRole);
+
         for (String role : allowedRoles) {
             if (role.equals(userRole)) return true;
         }
