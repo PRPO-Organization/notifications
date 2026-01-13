@@ -32,9 +32,9 @@ jobs:
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:latest
       - name: Update Kubernetes manifest
         run: |
-          sed -i "s|image: .*/notification-service:latest|image: $ACR_LOGIN_SERVER/notification-service:${GITHUB_SHA}|" deployment-app/app-deploy.yaml
+          sed -i "s|image: .*/notification-service:latest|image: $ACR_LOGIN_SERVER/notification-service:${GITHUB_SHA}|" k8s/deployment.yaml
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add deployment-app/app-deploy.yaml
+          git add k8s/deployment.yaml
           git commit -m "Update image to ${{ github.sha }}" || exit 0
           git push
