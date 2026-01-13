@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: notification-service
-        image: prporegistry.azurecr.io/notification-service:fba403ef0519010ef4ad385a1980d0365337291c
+        image: prporegistry.azurecr.io/notification-service:latest
         ports:
         - containerPort: 8080
         env:
